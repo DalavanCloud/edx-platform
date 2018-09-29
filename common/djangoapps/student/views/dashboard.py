@@ -549,7 +549,8 @@ def student_dashboard(request):
 
     """
     user = request.user
-    is_redirection = False
+    if configuration_helpers.get_value("ENABLE_MSA_MIGRATION"):
+        is_redirection = False
     try:
         # Check to see user social entry for this user
         social_user = UserSocialAuth.objects.get(user=user)
